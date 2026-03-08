@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seoul Aesthetic Surgery | Coming Soon</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --gold: #c9a96e;
+      --gold-light: #e8d5b0;
+      --dark: #1a1a2e;
+      --darker: #0f0f1a;
+      --white: #f9f7f4;
+      --text-muted: #a09080;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background-color: var(--darker);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(0.35);
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 15, 26, 0.2) 0%,
+        rgba(15, 15, 26, 0.7) 70%,
+        rgba(15, 15, 26, 1) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      color: var(--gold-light);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 2.5rem;
+      opacity: 0.6;
+    }
+
+    .coming-soon-label {
+      font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .count-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .count-number {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 200;
+      color: var(--white);
+      line-height: 1;
+      min-width: 3rem;
+      text-align: center;
+    }
+
+    .count-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .count-sep {
+      font-size: 2.5rem;
+      font-weight: 100;
+      color: var(--gold);
+      opacity: 0.5;
+      align-self: flex-start;
+      padding-top: 0.3rem;
+    }
+
+    /* Email form */
+    .notify-form {
+      display: flex;
+      gap: 0;
+      max-width: 440px;
+      margin: 0 auto 1rem;
+    }
+
+    .notify-form input {
+      flex: 1;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(201,169,110,0.4);
+      border-right: none;
+      color: var(--white);
+      padding: 0.85rem 1.25rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .notify-form input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .notify-form input:focus {
+      border-color: var(--gold);
+    }
+
+    .notify-form button {
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      color: var(--darker);
+      padding: 0.85rem 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      white-space: nowrap;
+    }
+
+    .notify-form button:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .form-note {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* Gallery strip */
+    .gallery {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      padding: 0 2px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55) saturate(0.8);
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.7) saturate(1);
+    }
+
+    .gallery-item .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .gallery-item:hover .caption {
+      opacity: 1;
+    }
+
+    /* Info section */
+    .info {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .info h2 {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+      color: var(--gold-light);
+    }
+
+    .info p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #b0a090;
+      margin-bottom: 1rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .feature {
+      border-top: 1px solid rgba(201,169,110,0.25);
+      padding-top: 1.5rem;
+      text-align: left;
+    }
+
+    .feature-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--gold);
+    }
+
+    .feature h3 {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+      font-weight: 400;
+    }
+
+    .feature p {
+      font-size: 0.8rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    footer .gold-text {
+      color: var(--gold);
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+      .notify-form {
+        flex-direction: column;
+      }
+      .notify-form input {
+        border-right: 1px solid rgba(201,169,110,0.4);
+        border-bottom: none;
+      }
+      .notify-form button {
+        width: 100%;
+      }
+      .count-sep {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="badge">Seoul Aesthetic Surgery</div>
+      <h1>Beauty, Refined<br><span>by Precision</span></h1>
+      <p class="hero-sub">Korea's Premier Cosmetic Surgery Specialists</p>
+      <div class="divider"></div>
+      <p class="coming-soon-label">Coming Soon</p>
+
+      <!-- Countdown -->
+      <div class="countdown">
+        <div class="count-block">
+          <div class="count-number" id="days">00</div>
+          <div class="count-label">Days</div>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-block">
+          <div class="count-number" id="hours">00</div>
+          <div class="count-label">Hours</div>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-block">
+          <div class="count-number" id="minutes">00</div>
+          <div class="count-label">Minutes</div>
+        </div>
+        <div class="count-sep">:</div>
+        <div class="count-block">
+          <div class="count-number" id="seconds">00</div>
+          <div class="count-label">Seconds</div>
+        </div>
+      </div>
+
+      <!-- Notify form -->
+      <form class="notify-form" onsubmit="handleSubmit(event)">
+        <input type="email" id="email-input" placeholder="Enter your email address" required />
+        <button type="submit">Notify Me</button>
+      </form>
+      <p class="form-note">Be the first to know when we launch.</p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery" aria-label="Clinic Gallery">
+    <div class="gallery-item">
+      <img
+        src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&auto=format&fit=crop&q=75"
+        alt="Modern clinic interior"
+        loading="lazy"
+      />
+      <div class="caption">Modern Facilities</div>
+    </div>
+    <div class="gallery-item">
+      <img
+        src="https://images.unsplash.com/photo-1512678080530-7760d81faba6?w=800&auto=format&fit=crop&q=75"
+        alt="Surgical precision"
+        loading="lazy"
+      />
+      <div class="caption">Expert Surgeons</div>
+    </div>
+    <div class="gallery-item">
+      <img
+        src="https://images.unsplash.com/photo-1598256989940-8c90949f7d89?w=800&auto=format&fit=crop&q=75"
+        alt="Patient care and consultation"
+        loading="lazy"
+      />
+      <div class="caption">Personalised Care</div>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section class="info">
+    <h2>World-Class Cosmetic Surgery in Seoul</h2>
+    <p>
+      Korea has established itself as the global leader in aesthetic and reconstructive surgery,
+      combining cutting-edge technique with an unparalleled eye for natural-looking results.
+      Our board-certified surgeons bring decades of combined experience to every procedure.
+    </p>
+    <p>
+      We are putting the finishing touches on our new clinic and digital home.
+      Something exceptional is on its way.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">&#10022;</div>
+        <h3>Board-Certified</h3>
+        <p>Every surgeon holds dual certification from the Korean Society of Plastic and Reconstructive Surgeons.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">&#10022;</div>
+        <h3>Advanced Techniques</h3>
+        <p>Minimally invasive procedures and the latest technology for faster recovery and lasting results.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">&#10022;</div>
+        <h3>International Patients</h3>
+        <p>Concierge services, multilingual staff, and dedicated care coordinators for overseas patients.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">&#10022;</div>
+        <h3>Natural Results</h3>
+        <p>Our philosophy centres on enhancing individual beauty while preserving each patient's unique character.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      &copy; 2026 <span class="gold-text">Seoul Aesthetic Surgery</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+      Gangnam-gu, Seoul, Korea&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
+    </p>
+  </footer>
+
+  <script>
+    // Countdown to launch date
+    const launch = new Date('2026-06-01T00:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = launch - now;
+
+      if (diff <= 0) {
+        document.querySelector('.countdown').innerHTML = '<p style="color:var(--gold);letter-spacing:.2em;">We are Live!</p>';
+        return;
+      }
+
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('days').textContent    = String(d).padStart(2, '0');
+      document.getElementById('hours').textContent   = String(h).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Notify form
+    function handleSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('email-input');
+      const form  = document.querySelector('.notify-form');
+      const note  = document.querySelector('.form-note');
+
+      form.style.display = 'none';
+      note.textContent   = 'Thank you. We will be in touch soon.';
+      note.style.color   = 'var(--gold)';
+      note.style.fontSize = '0.9rem';
+      note.style.letterSpacing = '0.05em';
+    }
+  </script>
+</body>
+</html>
