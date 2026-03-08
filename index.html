@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seoul Aesthetic Surgery | Coming Soon</title>
+  <title>Seoul Cosmetic Surgery | Coming Soon</title>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -115,47 +115,6 @@
       text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 2.5rem;
-    }
-
-    /* Countdown */
-    .countdown {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
-
-    .count-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .count-number {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 200;
-      color: var(--white);
-      line-height: 1;
-      min-width: 3rem;
-      text-align: center;
-    }
-
-    .count-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .count-sep {
-      font-size: 2.5rem;
-      font-weight: 100;
-      color: var(--gold);
-      opacity: 0.5;
-      align-self: flex-start;
-      padding-top: 0.3rem;
     }
 
     /* Email form */
@@ -352,9 +311,6 @@
       .notify-form button {
         width: 100%;
       }
-      .count-sep {
-        display: none;
-      }
     }
   </style>
 </head>
@@ -365,34 +321,11 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="badge">Seoul Aesthetic Surgery</div>
+      <div class="badge">Seoul Cosmetic Surgery</div>
       <h1>Beauty, Refined<br><span>by Precision</span></h1>
       <p class="hero-sub">Korea's Premier Cosmetic Surgery Specialists</p>
       <div class="divider"></div>
       <p class="coming-soon-label">Coming Soon</p>
-
-      <!-- Countdown -->
-      <div class="countdown">
-        <div class="count-block">
-          <div class="count-number" id="days">00</div>
-          <div class="count-label">Days</div>
-        </div>
-        <div class="count-sep">:</div>
-        <div class="count-block">
-          <div class="count-number" id="hours">00</div>
-          <div class="count-label">Hours</div>
-        </div>
-        <div class="count-sep">:</div>
-        <div class="count-block">
-          <div class="count-number" id="minutes">00</div>
-          <div class="count-label">Minutes</div>
-        </div>
-        <div class="count-sep">:</div>
-        <div class="count-block">
-          <div class="count-number" id="seconds">00</div>
-          <div class="count-label">Seconds</div>
-        </div>
-      </div>
 
       <!-- Notify form -->
       <form class="notify-form" onsubmit="handleSubmit(event)">
@@ -470,38 +403,12 @@
 
   <footer>
     <p>
-      &copy; 2026 <span class="gold-text">Seoul Aesthetic Surgery</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+      &copy; 2026 <span class="gold-text">Seoul Cosmetic Surgery</span>&nbsp;&nbsp;|&nbsp;&nbsp;
       Gangnam-gu, Seoul, Korea&nbsp;&nbsp;|&nbsp;&nbsp;All rights reserved
     </p>
   </footer>
 
   <script>
-    // Countdown to launch date
-    const launch = new Date('2026-06-01T00:00:00');
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = launch - now;
-
-      if (diff <= 0) {
-        document.querySelector('.countdown').innerHTML = '<p style="color:var(--gold);letter-spacing:.2em;">We are Live!</p>';
-        return;
-      }
-
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-
-      document.getElementById('days').textContent    = String(d).padStart(2, '0');
-      document.getElementById('hours').textContent   = String(h).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
     // Notify form
     function handleSubmit(e) {
       e.preventDefault();
